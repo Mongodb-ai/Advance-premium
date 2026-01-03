@@ -1,11 +1,13 @@
 FROM python:3.11-slim
 
-RUN apt update && apt upgrade -y
-RUN apt install git -y
-COPY requirements.txt /requirements.txt
+RUN apt update && apt install -y git gcc
 
-RUN cd /master_personal
-RUN pip3 install -U pip && pip3 install -U -r requirements.txt
-WORKDIR /TOM-BOT
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip3 install --no-cache-dir -r requirements.txt
+
 COPY . .
-CMD ["/bin/bash", "/start.sh"]
+
+CMD ["bash","start.sh"]
