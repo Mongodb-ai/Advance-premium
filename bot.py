@@ -1,6 +1,20 @@
 import logging
 import logging.config
+from flask import Flask
+import threading
+import os
 
+app = Flask(_name_)
+
+@app.route('/')
+def hello():
+    return "Bot is Running Live!"
+
+def run_web_server():
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host='0.0.0.0', port=port)
+
+threading.Thread(target=run_web_server, daemon=True).start()
 # Get logging configurations
 logging.config.fileConfig('logging.conf')
 logging.getLogger().setLevel(logging.INFO)
