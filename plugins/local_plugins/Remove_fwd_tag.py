@@ -9,10 +9,12 @@ from info import BOT_TOKEN, API_ID, API_HASH, CHANNELS
 
 
 Bot = Client(
-     os.environ.get("SESSION_NAME", "No-Forward-Messages"),
-    bot_token = BOT_TOKEN
-    api_id = API_ID
-    api_hash = API_HASH
+    "Remove-Forward-Messages",
+    bot_token=BOT_TOKEN,
+    api_id=API_ID,
+    api_hash=API_HASH
+)
+
 @Client.on_message(filters.forwarded & filters.group & filters.channel & filters.incoming)
 async def channel_tag(bot, message):
     try:
