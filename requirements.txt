@@ -15,3 +15,4 @@ psutil
 heroku3
 openai==0.25.0
 dnspython==2.3.0
+flask
