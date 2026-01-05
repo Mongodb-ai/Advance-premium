@@ -83,7 +83,7 @@ async def give_filter(client, message):
                     ),
                     InlineKeyboardButton(
                         text="NEW MOVIES",
-                        url="https://t.me/snfilmy"
+                        url="https://t.me/moviee_group_0"
                     ),
                 ]
                 
@@ -103,14 +103,12 @@ async def give_filter(client, message):
     if message.chat.id != SUPPORT_CHAT_ID:
         await global_filters(client, message)
     manual = await manual_filters(client, message)
-    if manual == False:
-                settings = await get_settings(message.chat.id)
+    if manual == False
+        settings = await get_settings(message.chat.id)
         if 'botpm' not in settings:
             settings['botpm'] = False
-
-
-
-        try:
+            
+            try:
             if settings['auto_ffilter']:
                 await auto_filter(client, message)
         except KeyError:
@@ -154,12 +152,11 @@ async def next_page(bot, query):
 
     if not files:
         return
-        settings = await get_settings(query.message.chat.id)
-    if 'botpm' not in settings:
-        settings['botpm'] = False
-
-        
- if 'is_shortlink' in settings.keys():
+            settings = await get_settings(query.message.chat.id)
+        if 'botpm' not in settings:
+            settings['botpm'] = False
+            
+    if 'is_shortlink' in settings.keys():
         ENABLE_SHORTLINK = settings['is_shortlink']
     else:
         await save_group_settings(query.message.chat.id, 'is_shortlink', False)
