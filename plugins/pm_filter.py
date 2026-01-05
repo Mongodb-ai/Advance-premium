@@ -104,14 +104,14 @@ async def give_filter(client, message):
         await global_filters(client, message)
     manual = await manual_filters(client, message)
     if manual == False:
-        settings = await get_settings(message.chat.id)
+                settings = await get_settings(message.chat.id)
         if 'botpm' not in settings:
             settings['botpm'] = False
-            
-            try:
-            if settings['auto_ffilter']:
-                await auto_filter(client, message)
+        try:
+                if settings['auto_ffilter']:
+                    await auto_filter(client, message)
         except KeyError:
+
             grpid = await active_connection(str(message.from_user.id))
             await save_group_settings(grpid, 'auto_ffilter', True)
             settings = await get_settings(message.chat.id)
