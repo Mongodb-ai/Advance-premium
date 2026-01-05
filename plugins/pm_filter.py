@@ -104,9 +104,11 @@ async def give_filter(client, message):
         await global_filters(client, message)
     manual = await manual_filters(client, message)
     if manual == False:
-        settings = await get_settings(message.chat.id)
-                if 'botpm' not in settings:
+                settings = await get_settings(message.chat.id)
+        if 'botpm' not in settings:
             settings['botpm'] = False
+
+
 
         try:
             if settings['auto_ffilter']:
@@ -152,9 +154,10 @@ async def next_page(bot, query):
 
     if not files:
         return
-    settings = await get_settings(query.message.chat.id)
+        settings = await get_settings(query.message.chat.id)
     if 'botpm' not in settings:
         settings['botpm'] = False
+
         
  if 'is_shortlink' in settings.keys():
         ENABLE_SHORTLINK = settings['is_shortlink']
