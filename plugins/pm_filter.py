@@ -103,7 +103,7 @@ async def give_filter(client, message):
     if message.chat.id != SUPPORT_CHAT_ID:
         await global_filters(client, message)
     manual = await manual_filters(client, message)
-    if manual == False
+    if manual == False:
         settings = await get_settings(message.chat.id)
         if 'botpm' not in settings:
             settings['botpm'] = False
