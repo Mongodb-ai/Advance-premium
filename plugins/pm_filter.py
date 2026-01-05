@@ -105,6 +105,9 @@ async def give_filter(client, message):
     manual = await manual_filters(client, message)
     if manual == False:
         settings = await get_settings(message.chat.id)
+        if 'botpm' not in settings:
+    settings['botpm'] = False
+    
         try:
             if settings['auto_ffilter']:
                 await auto_filter(client, message)
@@ -124,7 +127,7 @@ async def pm_text(bot, message):
     if user_id in ADMINS: return # ignore admins
     await message.reply_text(
          text="<b>ʜᴇʏ ᴅᴜᴅᴇ 😍 ,\n\nʏᴏᴜ ᴄᴀɴ'ᴛ ɢᴇᴛ ᴍᴏᴠɪᴇs ꜰʀᴏᴍ ʜᴇʀᴇ. ʀᴇǫᴜᴇsᴛ ᴏɴ ᴏᴜʀ ᴍᴏᴠɪᴇ ɢʀᴏᴜᴘ ᴏʀ ᴄʟɪᴄᴋ ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ​ ᴏʀ ᴀɴʏ ᴘʀᴏʙʟᴇᴍ ɪɴ ʙᴏᴛ ᴛʜᴇɴ ᴄʟɪᴄᴋ ʙᴏᴛ ᴏᴡɴᴇʀ ʙᴜᴛᴛᴏɴ</b>",   
-         reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("📝 ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ​ ", url=f"t.me/smovierequestgroup")],[InlineKeyboardButton("👨‍🏫 ʙᴏᴛ ᴏᴡɴᴇʀ", url=f"t.me/heartlesssn")]])
+         reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("📝 ʀᴇǫᴜᴇsᴛ ʜᴇʀᴇ​ ", url=f"t.me/moviee_group_0")],[InlineKeyboardButton("👨‍🏫 ʙᴏᴛ ᴏᴡɴᴇʀ", url=f"t.me/heartlesssn")]])
     )
 
 @Client.on_callback_query(filters.regex(r"^next"))
@@ -150,7 +153,10 @@ async def next_page(bot, query):
     if not files:
         return
     settings = await get_settings(query.message.chat.id)
-    if 'is_shortlink' in settings.keys():
+    if 'botpm' not in settings:
+        settings['botpm'] = False
+        
+ if 'is_shortlink' in settings.keys():
         ENABLE_SHORTLINK = settings['is_shortlink']
     else:
         await save_group_settings(query.message.chat.id, 'is_shortlink', False)
